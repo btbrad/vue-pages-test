@@ -5,6 +5,8 @@ const utils = require('./build/utils')
 //   return path.join(__dirname, dir)
 // }
 
+let baseUrl = '/vue/'
+
 module.exports = {
   // entry: {
   //   page1: '@/pages/index/index.js'
@@ -27,5 +29,13 @@ module.exports = {
   //     template:
   //   })
   // ]
-  pages: utils.setPages()
+  pages: utils.setPages(),
+  devServer: {
+    historyApiFallback: {
+      rewrites: [
+        { from: new RegExp(baseUrl + 'page1'), to: baseUrl + 'page1.html' },
+        { from: new RegExp(baseUrl + 'page2'), to: baseUrl + 'page.html' }
+      ]
+    }
+  }
 }
